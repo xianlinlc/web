@@ -1,140 +1,87 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>主页</title>
 
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
-    <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
-    <![endif]-->
+    <title>{{ config('app.name', 'Home') }}</title>
 
+    <!-- Styles -->
+    <link href="/css/app.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
 </head>
 <body>
-<!--网站主页面-->
-<!--导航-->
-<nav class="navbar navbar-default my-nav">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!--网页主标题-->
-            <a class="navbar-brand" href="#"></a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#">电影</a></li>
-                <li><a href="#">美剧</a></li>
-                <li><a href="#">音乐</a></li>
-            </ul>
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+    <div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- Branding Image -->
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
                 </div>
-                <button type="submit" class="btn btn-default">搜索</button>
-            </form>
 
-        </div>
-    </div>
-</nav>
-<!--导航-->
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        &nbsp;
+                    </ul>
 
-<!--介绍-->
-<div class="jumbotron description">
-    <h3>welcome</h3>
-    <p>分享最好的电影，美剧，音乐</p>
-    <p>
-        <a class="btn btn-primary btn-sm" href="login.html" role="button"> 登录 </a>
-        <a class="btn btn-primary btn-sm" href="register.html" role="button"> 注册 </a>
-        <a class="btn btn-primary btn-sm" href="#" role="button">
-            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 登出
-        </a>
-    </p>
-</div>
-<!--介绍-->
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/login') }}">登录</a></li>
+                            <li><a href="{{ url('/register') }}">注册</a></li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
 
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ url('/logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
 
-
-
-<!--主体-->
-<div class="container-fluid article" >
-    <div class="row">
-        <div class="col-md-8">
-            <!--文章主体-->
-            @yield('content');
-
-            <!--文章主体-->
-
-
-
-        </div>
-
-        <div class="col-md-4">
-            <!--About me-->
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">About me</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-6 col-md-3">
-                            <a href="#" class="thumbnail">
-                                <img src="http://pic.jia360.com/ueditor/jsp/upload/201501/18/67551421582869244.png">
-                            </a>
-                        </div>
-                        <a href="http://weibo.com/u/5213477909" target="_blank">
-                            <img src="/pic/Weibo.png" alt="" style="width: 32px;height: 32px">在微博关注我
-                        </a>
-                        <br/>
-                        <a href="https://github.com/xianlinlc" target="_blank">
-                            <img src="/pic/github_512_black.png" alt="" style="width: 32px;height: 32px">我的github
-                        </a>
-                    </div>
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                    </ul>
                 </div>
             </div>
-            <!--About me-->
+        </nav>
 
-            <!--标签-->
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">标签</h3>
-                </div>
-                <div class="panel-body">
-                    <a href="#"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>科幻</a>&nbsp;
-                    <a href="#"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>剧情</a>&nbsp;
-                    <a href="#"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>黑色幽默</a>&nbsp;
-                    <a href="#"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>...</a>&nbsp;
-                </div>
-            </div>
-            <!--标签-->
-        </div>
+        @yield('content')
     </div>
 
-
-    <!--尾部信息-->
-    <footer>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 text-center" style="margin-top: 8em">
-                    <p><strong>尾部信息</strong></p>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-<!--&lt;!&ndash; Include all compiled plugins (below), or include individual files as needed &ndash;&gt;-->
-<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
 </body>
 </html>
