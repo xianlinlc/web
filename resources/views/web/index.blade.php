@@ -8,7 +8,7 @@
                 <img src="{{$article->picurl}}" alt="" >
             </div>
             <div class="col-md-9 ">
-                <a href="details.html"><h2 class="article-title">{{$article->title_cn}}/{{$article->title_en}}</h2></a>
+                <a href='/article/{{$article->id}}'><h2 class="article-title">{{$article->title_cn}}/{{$article->title_en}}</h2></a>
                 <a href="#"><span class="glyphicon glyphicon-heart article-favor" aria-hidden="true">赞(0)</span></a>
                 <p class="article-desc">
                 {{$article->description}}

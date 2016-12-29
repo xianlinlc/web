@@ -78,9 +78,9 @@
 
 
 <!--主体-->
-<div class="container-fluid article" >
+<div class="container-fluid article" style="margin-left: 2em">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8" >
             <!--文章主体-->
             @yield('content');
 
