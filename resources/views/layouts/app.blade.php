@@ -61,7 +61,7 @@
 </div>
 <!--介绍-->
 
-@yield('content');
+
 
 
 <!--主体-->
@@ -69,7 +69,7 @@
     <div class="row">
         <div class="col-md-8">
             <!--文章主体-->
-
+            @yield('content');
 
             <!--文章主体-->
 
