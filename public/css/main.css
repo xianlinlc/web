@@ -1,0 +1,52 @@
+/*导航栏*/
+.my-nav {
+    background: whitesmoke;
+    border: none;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+/*导航栏标签*/
+.my-nav a{
+    color: #3d98ff!important;
+    font-size: 20px;
+}
+
+/*大幅描述*/
+.description{
+    background: #50a3ff;
+    padding: 10px 0px;
+    text-align: center;
+}
+/*文章主体*/
+.article{
+    padding: 0px;
+    /*position: absolute;*/
+}
+/*文章图片*/
+.article img{
+    /*position: relative;*/
+    left: 0;
+    width: 100%;
+}
+
+/*每个文章*/
+.article-each
+{
+    margin-top: 5%;
+
+}
+/*文章标题*/
+.article-title{
+    margin-top: 0;
+    display: inline;
+}
+/*文章赞*/
+.article-favor{
+    float: right;
+    color: #ff4958
+}
+/*文章简介*/
+.article-desc{
+    margin-top: 1em;
+}
